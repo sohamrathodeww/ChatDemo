@@ -52,7 +52,14 @@ e.preventDefault();
 //output message to DOM
 function outputMessage(message) {
   const div = document.createElement('div');
+
+if(sender == message.username) {
+  div.classList.add('message'); 
+  div.classList.add('sender');
+ } else {
   div.classList.add('message');
+ }
+ 
   div.innerHTML = `<p class="meta">${message.username} <span> ${message.time} </span></p>
   <p class="text"> ${message.text}</p>`;
   document.querySelector('.chat-messages').appendChild(div);
@@ -60,11 +67,19 @@ function outputMessage(message) {
 
 function LastMessage(Chatmsg) {
   //console.log('LastMessage called');
-  
+    console.log(socket.id);
+
     for (let i = 0; i < Chatmsg['chatMsg'].length; i++) {
+
      const div = document.createElement('div');
-     div.classList.add('message');
-     div.innerHTML = `<p class="meta">${Chatmsg['chatMsg'][i].senderid} <span> ${Chatmsg['chatMsg'][i].created_at} </span></p>
+     if(sender == Chatmsg['chatMsg'][i].senderid) {
+      div.classList.add('message'); 
+      div.classList.add('sender');
+     } else {
+      div.classList.add('message');
+     }
+     
+     div.innerHTML = `<p class="meta" >${Chatmsg['chatMsg'][i].senderid} <span> ${Chatmsg['chatMsg'][i].created_at} </span></p>
      <p class="text"> ${Chatmsg['chatMsg'][i].msg}</p>`;
      document.querySelector('.chat-messages').appendChild(div);
     }

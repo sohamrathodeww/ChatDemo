@@ -32,9 +32,8 @@ io.on('connection', socket => {
         if(err){
         }else{
             if(rows != '') {
-                    connection.query('SELECT * FROM user WHERE username ="'+sender+'"',function(err,rows) {
-
-                    });             
+                connection.query('SELECT * FROM user WHERE username ="'+sender+'"',function(err,rows) {
+                });             
             } else {
                 connection.query('INSERT INTO user(username) VALUES("'+sender+'")',function(err,rows){});    
             }
@@ -85,7 +84,7 @@ io.on('connection', socket => {
     socket.on('chatMessage', msg => {
         const userdata = GetCurrentUserdata(socket.id);
         
-        connection.query('INSERT INTO chat_tbl(senderid,receiverid,msg) VALUES("'+userdata.senderid+'","'+userdata.receiverid+'","'+msg+'")',function(err,rows){
+        connection.query('INSERT INTO chat_tbl(senderid,receiverid,msg,socket_id) VALUES("'+userdata.senderid+'","'+userdata.receiverid+'","'+msg+'","'+socket.id+'")',function(err,rows){
             //console.log(rows);        
         }); 
         // io.to(userdata.senderid).emit('message',formatMessage(userdata.senderid ,msg));

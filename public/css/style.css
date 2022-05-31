@@ -91,14 +91,26 @@ a {
 	overflow-y: scroll;
 }
 
-.chat-messages .message {
+/*.chat-messages .message {
 	padding: 10px;
 	margin-bottom: 15px;
 	background-color: var(--light-color);
 	border-radius: 5px;
 	overflow-wrap: break-word;
+}*/
+.message.sender {
+    float: right;
+    background: #b6f1f1 !important;
 }
-
+.chat-messages .message {
+	width: 70% !important;
+	padding: 10px;
+    margin-bottom: 15px;
+    background-color: var(--light-color);
+    border-radius: 5px;
+    overflow-wrap: break-word;
+    clear: both;
+}
 .chat-messages .message .meta {
 	font-size: 15px;
 	font-weight: bold;
